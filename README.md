@@ -2,31 +2,32 @@
 
 ## Install Web Server
 
-  ```bash
-    $ apt-get update -y && \
-    apt-get upgrade -y && \
-    apt-get dist-upgrade -y && \
-    apt-get install -y wget lsb-release apt-transport-https ca-certificates && \
-    wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
-    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.4.list && \
-    apt-get update -y && \
-    apt-get install -y apache2 apache2-doc apache2-utils curl mariadb-server sendmail python3-pip git unzip emacs php7.4 php7.4-cli php7.4-fpm php7.4-json php7.4-pdo php7.4-mysql php7.4-zip php7.4-gd  php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-json libapache2-mod-php7.4 php-cli php-mbstring nodejs npm && \
-    curl -sS https://getcomposer.org/installer -o composer-setup.php && \
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
-    a2enmod rewrite && \
-    sendmailconfig && \
-    service apache2 restart
-  ```
+```bash
+  $ apt-get update -y && \
+  apt-get upgrade -y && \
+  apt-get dist-upgrade -y && \
+  apt-get install -y wget lsb-release apt-transport-https ca-certificates && \
+  wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
+  echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php7.4.list && \
+  apt-get update -y && \
+  apt-get install -y apache2 apache2-doc apache2-utils curl mariadb-server sendmail python3-pip git unzip emacs php7.4 php7.4-cli php7.4-fpm php7.4-json php7.4-pdo php7.4-mysql php7.4-zip php7.4-gd  php7.4-mbstring php7.4-curl php7.4-xml php7.4-bcmath php7.4-json libapache2-mod-php7.4 php-cli php-mbstring nodejs npm && \
+  curl -sS https://getcomposer.org/installer -o composer-setup.php && \
+  php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+  a2enmod rewrite && \
+  sendmailconfig && \
+  service apache2 restart
+```
 
 ## Setup WSL2
 
 ### Basics
 
 #### Setup WSL behavior
-  * ```bash
+* First :
+  ```bash
     $ emacs /etc/wsl.conf
   ```
-  * Write inside :
+* Write inside :
   ```conf
     [automount]
     enabled = true
@@ -34,7 +35,7 @@
     [Interop]
     appendWindowsPath = False
   ```
-  * Then, in CMD :
+* Then, in CMD :
   ```bash
     > wsl -l
     # get wsl name
@@ -43,8 +44,9 @@
   ```
 ---
 #### Setup GitHub SSH Key
-  > https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-  * ```bash
+> https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+* First :
+  ```bash
     $ ssh-keygen -t rsa -b 4096 -C "email@example.com"
     $ eval $(ssh-agent -s)
     $ ssh-add ~/.ssh/id_rsa
@@ -52,7 +54,7 @@
     # print on GitHub
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Auto start ssh-agent #####
     eval $(ssh-agent) > /dev/null 2>&1
@@ -60,8 +62,9 @@
   ```
 ---
 #### Setup Github GPG Key
-  > https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification
-  * ```bash
+> https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification
+* 
+  ```bash
     $ gpg --full-generate-key
     $ gpg --list-secret-keys --keyid-format LONG
     $ gpg --armor --export $KEY # print on GitHub
@@ -72,14 +75,15 @@
   ```
 ---
 #### Setup Pinentry for WSL
-  > https://github.com/diablodale/pinentry-wsl-ps1
-  * ```bash
+> https://github.com/diablodale/pinentry-wsl-ps1
+*
+  ```bash
     $ cd /home/$USER/
     $ git clone https://github.com/diablodale/pinentry-wsl-ps1
     $ chmod ug=rx pinentry-wsl-ps1.sh
     $ emacs /root/.gnupg/gpg-agent.conf
   ```
-  * Write inside :
+* Write inside :
   ```conf
     enable-ssh-support
     disable-scdaemon
@@ -88,16 +92,16 @@
     debug-pinentry
     log-file /root/agent.log
   ```
-  * Then :
+* Then :
   ```bash
     $ gpg-connect-agent killagent /bye
     $ gpg-connect-agent /bye
   ```
-  * Finally :
+* Finally :
   ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Pinentry-WSL-PS1 enabling #####
     export GPGKEY=3922899C9BCA4AE4 # set prefered gpg signing key
@@ -120,10 +124,11 @@
 ### Ease of use
 
 #### Setup bash aliases
-  * ```bash
+* First :
+  ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Aliases setup #####
     alias ssh="ssh -A"
@@ -132,10 +137,11 @@
   ```
 ---
 #### Setup terminal colors
-  * ```bash
+* First :
+  ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Terminal Color enabling #####
     eval "`dircolors`"
@@ -145,11 +151,12 @@
   ```
 ---
 #### Setup autoclear RamCache
-  > https://github.com/microsoft/WSL/issues/4166
-  * ```bash
+> https://github.com/microsoft/WSL/issues/4166
+* First :
+  ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Auto clear Ram Cache #####
     printf "%s" "Clearing ram-cache ..."
@@ -158,10 +165,11 @@
   ```
 ---
 #### Setup autoload for Apache2
-  * ```bash
+* First :
+  ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Auto load Apache2 #####
     if [ $(service apache2 status | grep -v grep | grep 'apache2 is not running ... failed!' | wc -l) != 0 ]
@@ -174,10 +182,11 @@
   ```
 ---
 #### Setup autoload for MySQL
-  * ```bash
+* First :
+  ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Auto load MySQL #####
     if [ $(service mysql status | grep -v grep | grep 'MariaDB is stopped..' | wc -l) != 0 ]
@@ -190,38 +199,40 @@
   ```
 ---
 #### Setup Wakatime API
-  > https://wakatime.com/terminal#install-bash
-  * ```bash
+> https://wakatime.com/terminal#install-bash
+* First :
+  ```bash
     $ pip3 install wakatime
     $ cd /root/
     $ git clone https://github.com/gjsheep/bash-wakatime.git
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Wakatime enabling #####
     source /root/bash-wakatime/bash-wakatime.sh
     ##### End Wakatime enabling #####
   ```
-  * Visit https://wakatime.com/settings/account and copy your API KEY
-  * Then :
+* Visit https://wakatime.com/settings/account and copy your API KEY
+* Then :
   ```bash
     $ emacs /root/.wakatime.cfg
   ```
-  * Write inside :
+* Write inside :
   ```conf
     [settings]
     api_key = $API_KEY
   ```
 ---
 #### Setup Powerline Go
-  > https://github.com/justjanne/powerline-go
-  * ```bash
+> https://github.com/justjanne/powerline-go
+* First :
+  ```bash
     $ apt-get install golang -y
     $ go get -u github.com/justjanne/powerline-go
     $ emacs /root/.bashrc
   ```
-  * Write inside :
+* Write inside :
   ```bash
     ##### Start Powerline Go enabling #####
     GOPATH=/root/go
@@ -233,16 +244,17 @@
     fi
     ##### End Powerline Go enabling #####
   ```
-  * Then visit : https://github.com/adam7/delugia-code/releases,<br />
-    Download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
+* Then visit : https://github.com/adam7/delugia-code/releases,<br />
+  Download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
 ---
 #### Setup Archey4
-  > https://github.com/HorlogeSkynet/archey4
-  * ```bash
+> https://github.com/HorlogeSkynet/archey4
+* First :
+  ```bash
     $ pip3 install archey4
     $ emacs /etc/archey4/config.json
   ```
-  * Write inside :
+* Write inside :
   ```json
     {
       "allow_overriding": true,
@@ -300,11 +312,11 @@
       }
     }
   ```
-  * Then :
+* Then :
   ```bash
     $ emacs /root/.bashrc
   ```
-  * Write inside
+* Write inside
   ```bash
     ##### Start Archey enabling #####
     archey
@@ -313,10 +325,11 @@
 <br/>
 
 ## Create Apache2 VirtualHost
-  * ```bash
+* First :
+  ```bash
     $ emacs /etc/apache2/sites-available/sub.domain.ext.conf
   ```
-  * Write inside :
+* Write inside :
   ```conf
     <VirtualHost *:80>
       ServerName sub.domain.ext
@@ -327,7 +340,7 @@
       CustomLog /var/log/apache2/sub.domain.ext.access.log combined
     </VirtualHost>
   ```
-  * Then :
+* Then :
   ```bash
     $ a2ensite sub.domain.ext
     $ service apache2 restart
@@ -335,15 +348,16 @@
 <br/>
 
 ## Create new user
-  * ```bash
-  $ NEWUSER=nomprenom
-  $ useradd -m -s /bin/bash $NEWUSER
-  $ chmod 755 /home/$NEWUSER
-  $ rm /home/$NEWUSER/.bashrc
-  $ usermod -g www-data $NEWUSER
-  $ emacs /home/$NEWUSER/.bash_profile
+* First :
+  ```bash
+    $ NEWUSER=nomprenom
+    $ useradd -m -s /bin/bash $NEWUSER
+    $ chmod 755 /home/$NEWUSER
+    $ rm /home/$NEWUSER/.bashrc
+    $ usermod -g www-data $NEWUSER
+    $ emacs /home/$NEWUSER/.bash_profile
   ```
-  * Write inside :
+* Write inside :
   ```bash
     alias ls='ls --color=auto'
     ##### Start Alias access blocking #####
@@ -540,20 +554,20 @@
     alias alias="printf ''"
     ##### End Alias access blocking #####
   ```
-  * Then :
+* Then :
   ```bash
-  $ chown root:root /home/$NEWUSER/.bash_profile
-  $ chmod 755 /home/$NEWUSER/.bash_profile
-  $ ssh-keygen
+    $ chown root:root /home/$NEWUSER/.bash_profile
+    $ chmod 755 /home/$NEWUSER/.bash_profile
+    $ ssh-keygen
   ```
-  * If user uses Windows system, or will use FileZilla (or any program that use .ppk key files) :
-    * Download /home/$NEWUSER/.ssh/id_rsa
-    * Download PuTTY
-    * Install PuTTYgen and open it
-    * click on `Conversions` > `Import key`
-    * type passphrase
-    * Export private key to .ppk format
-  * Finally :
+* If user uses Windows system, or will use FileZilla (or any program that use .ppk key files) :
+  * Download /home/$NEWUSER/.ssh/id_rsa
+  * Download PuTTY
+  * Install PuTTYgen and open it
+  * click on `Conversions` > `Import key`
+  * type passphrase
+  * Export private key to .ppk format
+* Finally :
   ```bash
     $ cat /home/$NEWUSER/.ssh/id_rsa.pub >> /home/$NEWUSER/.ssh/authorized_keys
     $ chmod -R go= /home/$NEWUSER/.ssh/
