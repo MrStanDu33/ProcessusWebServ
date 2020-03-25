@@ -1,3 +1,28 @@
+# Table of content
+- [Table of content](#table-of-content)
+- [Setup instructions](#setup-instructions)
+  - [Install Web Server](#install-web-server)
+  - [Setup WSL2](#setup-wsl2)
+    - [Basics](#basics)
+      - [Setup WSL behavior](#setup-wsl-behavior)
+      - [Setup GitHub SSH Key](#setup-github-ssh-key)
+      - [Setup GitHub GPG Key](#setup-github-gpg-key)
+      - [Setup Pinentry for WSL](#setup-pinentry-for-wsl)
+    - [Ease of use](#ease-of-use)
+      - [Setup bash aliases](#setup-bash-aliases)
+      - [Setup terminal colors](#setup-terminal-colors)
+      - [Setup autoclear RamCache](#setup-autoclear-ramcache)
+      - [Setup autoload for Apache2](#setup-autoload-for-apache2)
+      - [Setup autoload for MySQL](#setup-autoload-for-mysql)
+      - [Setup Wakatime API](#setup-wakatime-api)
+      - [Setup Powerline Go](#setup-powerline-go)
+  - [Download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows](#download-delugianerdfontcompletettf-and-install-it-on-windows)
+      - [Setup Archey4](#setup-archey4)
+  - [Create Apache2 VirtualHost](#create-apache2-virtualhost)
+  - [Create user](#create-user)
+    - [MySQL user](#mysql-user)
+    - [Unix user](#unix-user)
+
 # Setup instructions
 
 ## Install Web Server
@@ -61,7 +86,7 @@
   ##### End Auto start ssh-agent #####
   ```
 ---
-#### Setup Github GPG Key
+#### Setup GitHub GPG Key
 > https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification
 * First :
   ```bash
