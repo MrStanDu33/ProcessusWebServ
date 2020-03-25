@@ -16,7 +16,6 @@
       - [Setup autoload for MySQL](#setup-autoload-for-mysql)
       - [Setup Wakatime API](#setup-wakatime-api)
       - [Setup Powerline Go](#setup-powerline-go)
-  - [Download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows](#download-delugianerdfontcompletettf-and-install-it-on-windows)
       - [Setup Archey4](#setup-archey4)
   - [Create Apache2 VirtualHost](#create-apache2-virtualhost)
   - [Create user](#create-user)
@@ -269,8 +268,7 @@
   fi
   ##### End Powerline Go enabling #####
   ```
-* Then visit : https://github.com/adam7/delugia-code/releases,<br />
-  Download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
+* Then visit : https://github.com/adam7/delugia-code/releases, download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
 ---
 #### Setup Archey4
 > https://github.com/HorlogeSkynet/archey4
