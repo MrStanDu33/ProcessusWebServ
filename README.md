@@ -347,7 +347,23 @@
   ```
 <br/>
 
-## Create new user
+## Create user
+
+### MySQL user
+* First :
+  ```bash
+  $ mysql -u root -p
+  ```
+  * Then, in SQL :
+  ```SQL
+  > CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+  > CREATE DATABASE database;
+  > GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost';
+  > FLUSH PRIVILEGES;
+  > exit;
+  ```
+
+### Unix user
 * First :
   ```bash
   $ NEWUSER=nomprenom
