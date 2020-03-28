@@ -2,6 +2,7 @@
 - [Table of content](#table-of-content)
 - [Setup instructions](#setup-instructions)
   - [Install Web Server](#install-web-server)
+  - [Setup Windows Terminal](#setup-windows-terminal)
   - [Setup WSL2](#setup-wsl2)
     - [Basics](#basics)
       - [Setup WSL behavior](#setup-wsl-behavior)
@@ -42,7 +43,7 @@
   service apache2 restart
 ```
 
-## Setup Windows Terminal\
+## Setup Windows Terminal
 > https://www.microsoft.com/fr-fr/p/windows-terminal-preview/9n0dx20hk701
 * Here is some basic configurations :
   ```json
