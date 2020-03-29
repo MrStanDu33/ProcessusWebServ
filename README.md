@@ -10,6 +10,7 @@
       - [Setup GitHub GPG Key](#setup-github-gpg-key)
       - [Setup Pinentry for WSL](#setup-pinentry-for-wsl)
     - [Ease of use](#ease-of-use)
+      - [Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2](#fix-apache2.4-apr_tcp_defer_accept-bug-in-wsl2)
       - [Setup bash aliases](#setup-bash-aliases)
       - [Setup terminal colors](#setup-terminal-colors)
       - [Setup autoclear RamCache](#setup-autoclear-ramcache)
@@ -348,6 +349,22 @@
 <br/>
 
 ### Ease of use
+> https://github.com/microsoft/WSL/issues/1953
+#### Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2
+>
+* First :
+  ```bash
+  $ emacs /etc/apache2/apache2.conf
+  ```
+* Write inside :
+  ```conf
+  AcceptFilter https none
+  AcceptFilter http none
+  ```
+* Then :
+  ```bash
+  service apache2 restart
+  ```
 
 #### Setup bash aliases
 * First :
