@@ -1,4 +1,4 @@
-![GitHub last commit](https://img.shields.io/github/last-commit/mrstandu33/ProcessusWebServ/dev)
+![GitHub last commit](https://img.shields.io/github/last-commit/mrstandu33/ProcessusWebServ/master)
 ![GitHub repo size](https://img.shields.io/github/repo-size/mrstandu33/ProcessusWebServ)
 [![GitHub license](https://img.shields.io/github/license/mrstandu33/ProcessusWebServ.svg)](https://github.com/mrstandu33/ProcessusWebServ/blob/master/LICENSE)
 
