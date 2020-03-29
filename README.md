@@ -10,7 +10,7 @@
       - [Setup GitHub GPG Key](#setup-github-gpg-key)
       - [Setup Pinentry for WSL](#setup-pinentry-for-wsl)
     - [Ease of use](#ease-of-use)
-      - [Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2](#fix-apache2.4-apr_tcp_defer_accept-bug-in-wsl2)
+      - [Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2](#fix-apache24-apr_tcp_defer_accept-bug-in-wsl2)
       - [Setup bash aliases](#setup-bash-aliases)
       - [Setup terminal colors](#setup-terminal-colors)
       - [Setup autoclear RamCache](#setup-autoclear-ramcache)
