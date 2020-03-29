@@ -1,3 +1,6 @@
+[![time tracker](https://wakatime.com/badge/github/mrstandu33/ProcessusWebServ.svg)](https://wakatime.com/badge/github/mrstandu33/ProcessusWebServ)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3411c636196449839ed2f0fc94a52e9b)](https://www.codacy.com/manual/mrstandu33/ProcessusWebServ?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrstandu33/ProcessusWebServ&amp;utm_campaign=Badge_Grade)
+
 # Table of content
 - [Table of content](#table-of-content)
 - [Setup instructions](#setup-instructions)
