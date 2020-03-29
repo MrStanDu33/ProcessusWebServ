@@ -1,5 +1,12 @@
+![GitHub last commit](https://img.shields.io/github/last-commit/mrstandu33/ProcessusWebServ/dev)
+![GitHub repo size](https://img.shields.io/github/repo-size/mrstandu33/ProcessusWebServ)
+[![GitHub license](https://img.shields.io/github/license/mrstandu33/ProcessusWebServ.svg)](https://github.com/mrstandu33/ProcessusWebServ/blob/master/LICENSE)
+
 [![time tracker](https://wakatime.com/badge/github/mrstandu33/ProcessusWebServ.svg)](https://wakatime.com/badge/github/mrstandu33/ProcessusWebServ)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3411c636196449839ed2f0fc94a52e9b)](https://www.codacy.com/manual/mrstandu33/ProcessusWebServ?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mrstandu33/ProcessusWebServ&amp;utm_campaign=Badge_Grade)
+![HitCount](http://hits.dwyl.io/mrstandu33/ProcessusWebServ.svg)
+
+[![Twitch Status](https://img.shields.io/twitch/status/mrstandu33)](https://twitch.tv/mrstandu33)
 
 # Table of content
 - [Table of content](#table-of-content)
