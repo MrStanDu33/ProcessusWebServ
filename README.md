@@ -1,4 +1,7 @@
 # Table of content
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/59d9b449e9294ac69eddf82e8cd7ca06)](https://app.codacy.com/manual/mrstandu33/ProcessusWebServ?utm_source=github.com&utm_medium=referral&utm_content=mrstandu33/ProcessusWebServ&utm_campaign=Badge_Grade_Dashboard)
+
 - [Table of content](#table-of-content)
 - [Setup instructions](#setup-instructions)
   - [Install Web Server](#install-web-server)
