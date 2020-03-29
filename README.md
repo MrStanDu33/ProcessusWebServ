@@ -305,6 +305,7 @@
   ```bash
   $ cd /home/$USER/
   $ git clone https://github.com/diablodale/pinentry-wsl-ps1
+  $ cd pinentry-wsl-ps1/
   $ chmod ug=rx pinentry-wsl-ps1.sh
   $ emacs /root/.gnupg/gpg-agent.conf
   ```
