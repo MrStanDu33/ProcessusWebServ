@@ -497,7 +497,7 @@
         ```
       2. Write inside the file :
         ```bash
-        antigen bundle sobolevn/wakatime-zsh-plugin` in your .zshrc**
+        antigen bundle sobolevn/wakatime-zsh-plugin
         ```
     * If you uses bash :
       1. Type in Bash :
