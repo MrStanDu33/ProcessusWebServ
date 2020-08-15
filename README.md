@@ -307,7 +307,7 @@
   $ ssh-add ~/.ssh/id_rsa
   $ cat ~/.ssh/id_rsa.pub
   # print on GitHub
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
@@ -333,26 +333,26 @@
 > https://github.com/diablodale/pinentry-wsl-ps1
 1. Type in Bash :
   ```bash
-  $ cd /home/$USER/
+  $ cd ~
   $ git clone https://github.com/diablodale/pinentry-wsl-ps1
   $ cd pinentry-wsl-ps1/
   $ chmod ug=rx pinentry-wsl-ps1.sh
-  $ emacs /root/.gnupg/gpg-agent.conf
+  $ emacs ~/.gnupg/gpg-agent.conf
   ```
 2. Write inside the file :
   ```conf
   enable-ssh-support
   disable-scdaemon
-  pinentry-program /home/$USER/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
+  pinentry-program ~/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
   debug 1024
   debug-pinentry
-  log-file /root/agent.log
+  log-file ~/agent.log
   ```
 3. Type in Bash :
   ```bash
   $ gpg-connect-agent killagent /bye
   $ gpg-connect-agent /bye
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 4. Write inside the file :
   ```bash
@@ -360,14 +360,14 @@
   export GPGKEY=3922899C9BCA4AE4 # set prefered gpg signing key
   PIDFOUND=$(pgrep gpg-agent)
   if [ -n "$PIDFOUND" ]; then
-    export GPG_AGENT_INFO="/root/.gnupg/S.gpg-agent:$PIDFOUND:1"
+    export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$PIDFOUND:1"
     export GPG_TTY=$(tty)
-    export SSH_AUTH_SOCK="/root/.gnupg/S.gpg-agent.ssh"
+    export SSH_AUTH_SOCK="~/.gnupg/S.gpg-agent.ssh"
     unset SSH_AGENT_PID
   fi
   PIDFOUND=$(pgrep dirmngr)
   if [ -n "$PIDFOUND" ]; then
-    export DIRMNGR_INFO="/root/.gnupg/S.dirmngr:$PIDFOUND:1"
+    export DIRMNGR_INFO="~/.gnupg/S.dirmngr:$PIDFOUND:1"
   fi
   unset PIDFOUND
   ##### End Pinentry-WSL-PS1 enabling #####
@@ -395,7 +395,7 @@
 #### Setup bash aliases
 1. Type in Bash :
   ```bash
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
@@ -408,7 +408,7 @@
 #### Setup terminal colors
 1. Type in Bash :
   ```bash
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
@@ -422,7 +422,7 @@
 #### Setup autoload for Apache2
 1. Type in Bash :
   ```bash
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
@@ -439,7 +439,7 @@
 #### Setup autoload for MySQL
 1. Type in Bash :
   ```bash
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
@@ -458,20 +458,20 @@
 1. Type in Bash :
   ```bash
   $ pip3 install wakatime
-  $ cd /root/
+  $ cd ~
   $ git clone https://github.com/gjsheep/bash-wakatime.git
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
   ##### Start Wakatime enabling #####
-  source /root/bash-wakatime/bash-wakatime.sh
+  source ~/bash-wakatime/bash-wakatime.sh
   ##### End Wakatime enabling #####
   ```
 3. Visit https://wakatime.com/settings/account and copy your API KEY
 4. Type in Bash :
   ```bash
-  $ emacs /root/.wakatime.cfg
+  $ emacs ~/.wakatime.cfg
   ```
 5 Write inside the file :
   ```conf
@@ -485,12 +485,12 @@
   ```bash
   $ apt-get install golang -y
   $ go get -u github.com/justjanne/powerline-go
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 2. Write inside the file :
   ```bash
   ##### Start Powerline Go enabling #####
-  GOPATH=/root/go
+  GOPATH=~/go
   function _update_ps1() {
     PS1="$($GOPATH/bin/powerline-go -error $?)"
   }
@@ -568,7 +568,7 @@
   ```
 3. Type in Bash :
   ```bash
-  $ emacs /root/.bashrc
+  $ emacs ~/.bashrc
   ```
 4. Write inside the file :
   ```bash
