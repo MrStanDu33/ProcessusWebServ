@@ -35,7 +35,6 @@
                 <li><a href="#fix-apache24-apr_tcp_defer_accept-bug-in-wsl2">Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2</a></li>
                 <li><a href="#setup-bash-aliases">Setup bash aliases</a></li>
                 <li><a href="#setup-terminal-colors">Setup terminal colors</a></li>
-                <li><a href="#setup-autoclear-ramcache">Setup autoclear RamCache</a></li>
                 <li><a href="#setup-autoload-for-apache2">Setup autoload for Apache2</a></li>
                 <li><a href="#setup-autoload-for-mysql">Setup autoload for MySQL</a></li>
                 <li><a href="#setup-wakatime-api">Setup Wakatime API</a></li>
@@ -418,20 +417,6 @@
   force_color_prompt=yes
   alias ls='ls --color=auto'
   ##### End Terminal Color enabling #####
-  ```
----
-#### Setup autoclear RamCache
-> https://github.com/microsoft/WSL/issues/4166
-1. Type in Bash :
-  ```bash
-  $ emacs /root/.bashrc
-  ```
-2. Write inside the file :
-  ```bash
-  ##### Start Auto clear Ram Cache #####
-  printf "%s" "Clearing ram-cache ..."
-  su -c "echo 3 >'/proc/sys/vm/drop_caches' && printf '\n%s\n' 'Clearing ram-cache OK'" root
-  ##### End Auto clear Ram Cache #####
   ```
 ---
 #### Setup autoload for Apache2
