@@ -9,30 +9,54 @@
 [![Twitch Status](https://img.shields.io/twitch/status/mrstandu33)](https://twitch.tv/mrstandu33)
 
 # Table of content
-- [Table of content](#table-of-content)
-- [Setup instructions](#setup-instructions)
-  - [Install Web Server](#install-web-server)
-  - [Setup Windows Terminal](#setup-windows-terminal)
-  - [Setup WSL2](#setup-wsl2)
-    - [Basics](#basics)
-      - [Setup WSL behavior](#setup-wsl-behavior)
-      - [Setup GitHub SSH Key](#setup-github-ssh-key)
-      - [Setup GitHub GPG Key](#setup-github-gpg-key)
-      - [Setup Pinentry for WSL](#setup-pinentry-for-wsl)
-    - [Ease of use](#ease-of-use)
-      - [Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2](#fix-apache24-apr_tcp_defer_accept-bug-in-wsl2)
-      - [Setup bash aliases](#setup-bash-aliases)
-      - [Setup terminal colors](#setup-terminal-colors)
-      - [Setup autoclear RamCache](#setup-autoclear-ramcache)
-      - [Setup autoload for Apache2](#setup-autoload-for-apache2)
-      - [Setup autoload for MySQL](#setup-autoload-for-mysql)
-      - [Setup Wakatime API](#setup-wakatime-api)
-      - [Setup Powerline Go](#setup-powerline-go)
-      - [Setup Archey4](#setup-archey4)
-  - [Create Apache2 VirtualHost](#create-apache2-virtualhost)
-  - [Create user](#create-user)
-    - [MySQL user](#mysql-user)
-    - [Unix user](#unix-user)
+<details>
+  <ul>
+    <li><a href="#table-of-content">Table of content</a></li>
+    <li>
+      <a href="#setup-instructions">Setup instructions</a>
+      <ul>
+        <li><a href="#install-web-server">Install Web Server</a></li>
+        <li><a href="#setup-windows-terminal">Setup Windows Terminal</a></li>
+        <li>
+          <a href="#setup-wsl2">Setup WSL2</a>
+          <ul>
+            <li>
+              <a href="#basics">Basics</a>
+              <ul>
+                <li><a href="#setup-wsl-behavior">Setup WSL behavior</a></li>
+                <li><a href="#setup-github-ssh-key">Setup GitHub SSH Key</a></li>
+                <li><a href="#setup-github-gpg-key">Setup GitHub GPG Key</a></li>
+                <li><a href="#setup-pinentry-for-wsl">Setup Pinentry for WSL</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#ease-of-use">Ease of use</a>
+              <ul>
+                <li><a href="#fix-apache24-apr_tcp_defer_accept-bug-in-wsl2">Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2</a></li>
+                <li><a href="#setup-bash-aliases">Setup bash aliases</a></li>
+                <li><a href="#setup-terminal-colors">Setup terminal colors</a></li>
+                <li><a href="#setup-autoclear-ramcache">Setup autoclear RamCache</a></li>
+                <li><a href="#setup-autoload-for-apache2">Setup autoload for Apache2</a></li>
+                <li><a href="#setup-autoload-for-mysql">Setup autoload for MySQL</a></li>
+                <li><a href="#setup-wakatime-api">Setup Wakatime API</a></li>
+                <li><a href="#setup-powerline-go">Setup Powerline Go</a></li>
+                <li><a href="#setup-archey4">Setup Archey4</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#create-apache2-virtualhost">Create Apache2 VirtualHost</a></li>
+        <li>
+          <a href="#create-user">Create user</a>
+          <ul>
+            <li><a href="#mysql-user">MySQL user</a></li>
+            <li><a href="#unix-user">Unix user</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</details>
 
 # Setup instructions
 
