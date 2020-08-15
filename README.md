@@ -24,6 +24,7 @@
               <a href="#basics">Basics</a>
               <ul>
                 <li><a href="#setup-wsl-behavior">Setup WSL behavior</a></li>
+                <li><a href="#setup-zsh">Setup ZSH</a></li>
                 <li><a href="#setup-github-ssh-key">Setup GitHub SSH Key</a></li>
                 <li><a href="#setup-github-gpg-key">Setup GitHub GPG Key</a></li>
                 <li><a href="#setup-pinentry-for-wsl">Setup Pinentry for WSL</a></li>
@@ -298,6 +299,39 @@
   > $NAME config --default-user root
   ```
 ---
+
+#### Setup ZSH
+1. Type in Bash :
+  ```bash
+  $ apt-get install -y zsh
+  $ chsh
+  $ /bin/zsh
+  $ cd ~
+  $ curl -L git.io/antigen > antigen.zsh
+  $ emacs ~/.zshrc
+  ```
+2. Write inside the file :
+  ```conf
+  source ~/antigen.zsh
+
+  antigen use oh-my-zsh
+
+  antigen bundle git
+  antigen bundle pip
+  antigen bundle github
+  antigen bundle npm
+  antigen bundle command-not-found
+  antigen bundle common-aliases
+  antigen bundle compleat
+  antigen bundle git-extras
+
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  antigen bundle zsh-users/zsh-completions
+  antigen bundle zsh-users/zsh-autosuggestions
+
+  antigen apply
+  ```
+---
 #### Setup GitHub SSH Key
 > https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
 1. Type in Bash :
@@ -455,25 +489,36 @@
 ---
 #### Setup Wakatime API
 > https://wakatime.com/terminal#install-bash
-1. Type in Bash :
+1. First :
+    * If you uses zsh :
+      1. Type in Bash :
+        ```bash
+        $ emacs ~/.zshrc
+        ```
+      2. Write inside the file :
+        ```bash
+        antigen bundle sobolevn/wakatime-zsh-plugin` in your .zshrc**
+        ```
+    * If you uses bash :
+      1. Type in Bash :
+        ```bash
+        $ cd ~
+        $ git clone https://github.com/gjsheep/bash-wakatime.git
+        $ emacs ~/.bashrc
+        ```
+      2. Write inside the file :
+        ```bash
+        ##### Start Wakatime enabling #####
+        source ~/bash-wakatime/bash-wakatime.sh
+        ##### End Wakatime enabling #####
+        ```
+2. Visit https://wakatime.com/settings/account and copy your API KEY
+3. Type in Bash :
   ```bash
   $ pip3 install wakatime
-  $ cd ~
-  $ git clone https://github.com/gjsheep/bash-wakatime.git
-  $ emacs ~/.bashrc
-  ```
-2. Write inside the file :
-  ```bash
-  ##### Start Wakatime enabling #####
-  source ~/bash-wakatime/bash-wakatime.sh
-  ##### End Wakatime enabling #####
-  ```
-3. Visit https://wakatime.com/settings/account and copy your API KEY
-4. Type in Bash :
-  ```bash
   $ emacs ~/.wakatime.cfg
   ```
-5 Write inside the file :
+4. Write inside the file :
   ```conf
   [settings]
   api_key = $API_KEY
@@ -481,25 +526,40 @@
 ---
 #### Setup Powerline Go
 > https://github.com/justjanne/powerline-go
-1. Type in Bash :
-  ```bash
-  $ apt-get install golang -y
-  $ go get -u github.com/justjanne/powerline-go
-  $ emacs ~/.bashrc
-  ```
-2. Write inside the file :
-  ```bash
-  ##### Start Powerline Go enabling #####
-  GOPATH=~/go
-  function _update_ps1() {
-    PS1="$($GOPATH/bin/powerline-go -error $?)"
-  }
-  if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-  fi
-  ##### End Powerline Go enabling #####
-  ```
-3. Visit : https://github.com/microsoft/cascadia-code/releases, download `CascadiaPL.ttf` and install it on Windows
+1. First :
+    * If you uses zsh :
+      1. Type in Bash :
+        ```bash
+        $ emacs ~/.zshrc
+        ```
+      2. Write inside the file :
+        ```bash
+        antigen bundle Lokaltog/powerline powerline/bindings/zsh
+        ```
+      3. Type in Bash :
+        ```bash
+        $ pip3 install powerline-status
+        ```
+    * If you uses bash :
+      1. Type in Bash :
+        ```bash
+        $ apt-get install golang -y
+        $ go get -u github.com/justjanne/powerline-go
+        $ emacs ~/.bashrc
+        ```
+      2. Write inside the file :
+        ```bash
+        ##### Start Powerline Go enabling #####
+        GOPATH=~/go
+        function _update_ps1() {
+          PS1="$($GOPATH/bin/powerline-go -error $?)"
+        }
+        if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+          PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+        fi
+        ##### End Powerline Go enabling #####
+        ```
+2. Visit https://github.com/microsoft/cascadia-code/releases, download `CascadiaPL.ttf` and install it on Windows
 ---
 #### Setup Archey4
 > https://github.com/HorlogeSkynet/archey4
