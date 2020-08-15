@@ -499,7 +499,7 @@
   fi
   ##### End Powerline Go enabling #####
   ```
-3. Visit : https://github.com/adam7/delugia-code/releases, download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
+3. Visit : https://github.com/microsoft/cascadia-code/releases, download `CascadiaPL.ttf` and install it on Windows
 ---
 #### Setup Archey4
 > https://github.com/HorlogeSkynet/archey4
