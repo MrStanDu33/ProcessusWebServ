@@ -265,7 +265,7 @@
   enabled = true
   options = "metadata,umask=22,fmask=11"
   [Interop]
-  appendWindowsPath = False
+  appendWindowsPath = True
   ```
 * Then, in CMD :
   ```bash
