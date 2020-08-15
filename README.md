@@ -279,11 +279,11 @@
 ### Basics
 
 #### Setup WSL behavior
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /etc/wsl.conf
   ```
-* Write inside :
+2. Write inside the file :
   ```conf
   [automount]
   enabled = true
@@ -291,7 +291,7 @@
   [Interop]
   appendWindowsPath = True
   ```
-* Then, in CMD :
+3. Type in Command Prompt :
   ```bash
   > wsl -l
   # get wsl name
@@ -301,7 +301,7 @@
 ---
 #### Setup GitHub SSH Key
 > https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-* First :
+1. Type in Bash :
   ```bash
   $ ssh-keygen -t rsa -b 4096 -C "email@example.com"
   $ eval $(ssh-agent -s)
@@ -310,7 +310,7 @@
   # print on GitHub
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Auto start ssh-agent #####
   eval $(ssh-agent) > /dev/null 2>&1
@@ -319,7 +319,7 @@
 ---
 #### Setup GitHub GPG Key
 > https://help.github.com/en/github/authenticating-to-github/managing-commit-signature-verification
-* First :
+1. Type in Bash :
   ```bash
   $ gpg --full-generate-key
   $ gpg --list-secret-keys --keyid-format LONG
@@ -332,7 +332,7 @@
 ---
 #### Setup Pinentry for WSL
 > https://github.com/diablodale/pinentry-wsl-ps1
-* First :
+1. Type in Bash :
   ```bash
   $ cd /home/$USER/
   $ git clone https://github.com/diablodale/pinentry-wsl-ps1
@@ -340,7 +340,7 @@
   $ chmod ug=rx pinentry-wsl-ps1.sh
   $ emacs /root/.gnupg/gpg-agent.conf
   ```
-* Write inside :
+2. Write inside the file :
   ```conf
   enable-ssh-support
   disable-scdaemon
@@ -349,16 +349,13 @@
   debug-pinentry
   log-file /root/agent.log
   ```
-* Then :
+3. Type in Bash :
   ```bash
   $ gpg-connect-agent killagent /bye
   $ gpg-connect-agent /bye
-  ```
-* Finally :
-  ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside :
+4. Write inside the file :
   ```bash
   ##### Start Pinentry-WSL-PS1 enabling #####
   export GPGKEY=3922899C9BCA4AE4 # set prefered gpg signing key
@@ -382,26 +379,26 @@
 > https://github.com/microsoft/WSL/issues/1953
 #### Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2
 >
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /etc/apache2/apache2.conf
   ```
-* Write inside :
+2. Write inside the file :
   ```conf
   AcceptFilter https none
   AcceptFilter http none
   ```
-* Then :
+3. Type in Bash :
   ```bash
   service apache2 restart
   ```
 
 #### Setup bash aliases
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Aliases setup #####
   alias ssh="ssh -A"
@@ -410,11 +407,11 @@
   ```
 ---
 #### Setup terminal colors
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Terminal Color enabling #####
   eval "`dircolors`"
@@ -425,11 +422,11 @@
 ---
 #### Setup autoclear RamCache
 > https://github.com/microsoft/WSL/issues/4166
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Auto clear Ram Cache #####
   printf "%s" "Clearing ram-cache ..."
@@ -438,11 +435,11 @@
   ```
 ---
 #### Setup autoload for Apache2
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Auto load Apache2 #####
   if [ $(service apache2 status | grep -v grep | grep 'apache2 is not running ... failed!' | wc -l) != 0 ]
@@ -455,11 +452,11 @@
   ```
 ---
 #### Setup autoload for MySQL
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Auto load MySQL #####
   if [ $(service mysql status | grep -v grep | grep 'MariaDB is stopped..' | wc -l) != 0 ]
@@ -473,25 +470,25 @@
 ---
 #### Setup Wakatime API
 > https://wakatime.com/terminal#install-bash
-* First :
+1. Type in Bash :
   ```bash
   $ pip3 install wakatime
   $ cd /root/
   $ git clone https://github.com/gjsheep/bash-wakatime.git
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Wakatime enabling #####
   source /root/bash-wakatime/bash-wakatime.sh
   ##### End Wakatime enabling #####
   ```
-* Visit https://wakatime.com/settings/account and copy your API KEY
-* Then :
+3. Visit https://wakatime.com/settings/account and copy your API KEY
+4. Type in Bash :
   ```bash
   $ emacs /root/.wakatime.cfg
   ```
-* Write inside :
+5 Write inside the file :
   ```conf
   [settings]
   api_key = $API_KEY
@@ -499,13 +496,13 @@
 ---
 #### Setup Powerline Go
 > https://github.com/justjanne/powerline-go
-* First :
+1. Type in Bash :
   ```bash
   $ apt-get install golang -y
   $ go get -u github.com/justjanne/powerline-go
   $ emacs /root/.bashrc
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   ##### Start Powerline Go enabling #####
   GOPATH=/root/go
@@ -517,16 +514,16 @@
   fi
   ##### End Powerline Go enabling #####
   ```
-* Then visit : https://github.com/adam7/delugia-code/releases, download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
+3. Visit : https://github.com/adam7/delugia-code/releases, download `Delugia.Nerd.Font.Complete.ttf` and install it on Windows
 ---
 #### Setup Archey4
 > https://github.com/HorlogeSkynet/archey4
-* First :
+1. Type in Bash :
   ```bash
   $ pip3 install archey4
   $ emacs /etc/archey4/config.json
   ```
-* Write inside :
+2. Write inside the file :
   ```json
   {
     "allow_overriding": true,
@@ -584,11 +581,11 @@
     }
   }
   ```
-* Then :
+3. Type in Bash :
   ```bash
   $ emacs /root/.bashrc
   ```
-* Write inside
+4. Write inside the file :
   ```bash
   ##### Start Archey enabling #####
   archey
@@ -597,11 +594,11 @@
 <br/>
 
 ## Create Apache2 VirtualHost
-* First :
+1. Type in Bash :
   ```bash
   $ emacs /etc/apache2/sites-available/sub.domain.ext.conf
   ```
-* Write inside :
+2. Write inside the file :
   ```conf
   <VirtualHost *:80>
     ServerName sub.domain.ext
@@ -612,7 +609,7 @@
     CustomLog /var/log/apache2/sub.domain.ext.access.log combined
   </VirtualHost>
   ```
-* Then :
+3. Type in Bash :
   ```bash
   $ a2ensite sub.domain.ext
   $ service apache2 restart
@@ -622,11 +619,11 @@
 ## Create user
 
 ### MySQL user
-* First :
+1. Type in Bash :
   ```bash
   $ mysql -u root -p
   ```
-  * Then, in SQL :
+2. Type in SQL prompt :
   ```SQL
   > CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
   > CREATE DATABASE database;
@@ -636,7 +633,7 @@
   ```
 
 ### Unix user
-* First :
+1. Type in Bash :
   ```bash
   $ NEWUSER=nomprenom
   $ useradd -m -s /bin/bash $NEWUSER
@@ -645,7 +642,7 @@
   $ usermod -g www-data $NEWUSER
   $ emacs /home/$NEWUSER/.bash_profile
   ```
-* Write inside :
+2. Write inside the file :
   ```bash
   alias ls='ls --color=auto'
   ##### Start Alias access blocking #####
@@ -842,20 +839,22 @@
   alias alias="printf ''"
   ##### End Alias access blocking #####
   ```
-* Then :
+3. Type in Bash :
   ```bash
   $ chown root:root /home/$NEWUSER/.bash_profile
   $ chmod 755 /home/$NEWUSER/.bash_profile
   $ ssh-keygen
   ```
-* If user uses Windows system, or will use FileZilla (or any program that use .ppk key files) :
-  * Download /home/$NEWUSER/.ssh/id_rsa
-  * Download PuTTY
-  * Install PuTTYgen and open it
-  * click on `Conversions` > `Import key`
-  * type passphrase
-  * Export private key to .ppk format
-* Finally :
+  * If user uses Windows system, or will use FileZilla (or any program that use .ppk key files) :
+    <ul>
+      <li>Download /home/$NEWUSER/.ssh/id_rsa</li>
+      <li>Download PuTTY</li>
+      <li>Install PuTTYgen and open it</li>
+      <li>Click on `Conversions` > `Import key`</li>
+      <li>Type passphrase</li>
+      <li>Export private key to .ppk format</li>
+    </ul>
+4. Type in Bash :
   ```bash
   $ cat /home/$NEWUSER/.ssh/id_rsa.pub >> /home/$NEWUSER/.ssh/authorized_keys
   $ chmod -R go= /home/$NEWUSER/.ssh/
