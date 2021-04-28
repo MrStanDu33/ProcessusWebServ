@@ -377,7 +377,7 @@
   ```conf
   enable-ssh-support
   disable-scdaemon
-  pinentry-program ~/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
+  pinentry-program /root/pinentry-wsl-ps1/pinentry-wsl-ps1.sh
   debug 1024
   debug-pinentry
   log-file ~/agent.log
