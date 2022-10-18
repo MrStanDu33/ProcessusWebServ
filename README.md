@@ -493,6 +493,9 @@ source $HOME/.keychain/$HOST-sh
 
 > https://calebhearth.com/sign-git-with-ssh
 
+> **⚠️ _<ins>SSH signature verification is available in Git 2.34 or later<ins>_ ⚠️**<br/>
+> you can run `git --version` to ensure you have the right version.
+
 1. First, generate a SSH key as seen before
 2. Then, type in Bash :
 
