@@ -470,10 +470,19 @@ $ ssh-keygen -t ed25519 -C "your_email@example.com"
 $ eval $(ssh-agent -s)
 $ ssh-add ~/.ssh/id_ed25519
 $ cat ~/.ssh/id_ed25519.pub
-# print on GitHub
+$ emacs ~/.zshrc
 ```
 
-2. Finally, go to your [SSH and GPG key settings page](https://github.com/settings/keys), and add your SSH key to your account as an authentication key.
+2. Then, write inside the file :
+
+```bash
+##### Start SSH agent autoload #####
+/usr/bin/keychain --nogui $HOME/.ssh/id_ed25519
+source $HOME/.keychain/$HOST-sh
+##### End SSH agent autoload #####
+```
+
+3. Finally, go to your [SSH and GPG key settings page](https://github.com/settings/keys), and add your SSH key to your account as an authentication key.
 
 ---
 
@@ -497,7 +506,6 @@ $ git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
 $ touch ~/.ssh/allowed_signers
 $ echo "email@example.com ssh-ed25519 <your key id>" > ~/.ssh/allowed_signers
 $ emacs ~/.gitconfig
-# Set in VSCode settings.json -> "git.enableCommitSigning": true,
 ```
 
 3. Write inside the file :
