@@ -26,32 +26,29 @@
               <ul>
                 <li><a href="#setup-wsl-behavior">Setup WSL behavior</a></li>
                 <li><a href="#setup-zsh">Setup ZSH</a></li>
-                <li><a href="#setup-github-ssh-key">Setup GitHub SSH Key</a></li>
-                <li><a href="#setup-github-gpg-key">Setup GitHub GPG Key</a></li>
-                <li><a href="#setup-pinentry-for-wsl">Setup Pinentry for WSL</a></li>
+                <li><a href="#setup-git-and-github">Setup GitHub and GitHub</a></li>
               </ul>
             </li>
             <li>
               <a href="#ease-of-use">Ease of use</a>
               <ul>
-                <li><a href="#fix-apache24-apr_tcp_defer_accept-bug-in-wsl2">Fix Apache2.4 'APR_TCP_DEFER_ACCEPT' bug in WSL2</a></li>
                 <li><a href="#setup-bash-aliases">Setup bash aliases</a></li>
                 <li><a href="#setup-terminal-colors">Setup terminal colors</a></li>
-                <li><a href="#setup-autoload-for-apache2">Setup autoload for Apache2</a></li>
-                <li><a href="#setup-autoload-for-mysql">Setup autoload for MySQL</a></li>
-                <li><a href="#setup-wakatime-api">Setup Wakatime API</a></li>
-                <li><a href="#setup-powerline-go">Setup Powerline Go</a></li>
-                <li><a href="#setup-archey4">Setup Archey4</a></li>
+                <li><a href="#setup-wakatime-api">Setup Wakatime</a></li>
+                <li><a href="#setup-powerline-theme">Setup Powerline theme</a></li>
+                <li><a href="#setup-neofetch">Setup Neofetch</a></li>
               </ul>
             </li>
           </ul>
         </li>
+        <li><a href="#install-phpmyadmin">Install phpMyAdmin</a></li>
+        <li><a href="#install-node-version-manager-nvm">Install Node Version Manager (NVM)</a></li>
         <li><a href="#create-apache2-virtualhost">Create Apache2 VirtualHost</a></li>
         <li>
-          <a href="#create-user">Create user</a>
+          <a href="#create-user">Create users</a>
           <ul>
-            <li><a href="#mysql-user">MySQL user</a></li>
-            <li><a href="#unix-user">Unix user</a></li>
+            <li><a href="#mysql-user">MySQL users</a></li>
+            <li><a href="#unix-user">Unix users</a></li>
           </ul>
         </li>
       </ul>
@@ -64,18 +61,20 @@
 ## Install Web Server
 
 ```bash
-$ apt-get update -y && \
-apt-get upgrade -y && \
-apt-get dist-upgrade -y && \
-apt-get install -y curl wget lsb-release apt-transport-https ca-certificates && \
-curl -sSL https://packages.sury.org/php/README.txt | bash -x && \1
+$ sudo su && \
+$ apt-get clean -y && \
 apt-get update -y && \
-apt-get install -y apache2 apache2-doc apache2-utils curl mariadb-server sendmail python3-pip git unzip emacs php8.1 php8.1-common php8.1-curl php8.1-bcmath php8.1-intl php8.1-mbstring php8.1-xmlrpc php8.1-mcrypt php8.1-mysql php8.1-gd php8.1-xml php8.1-cli php8.1-zip man bat exa && \
+apt-get upgrade -y && \
+apt-get full-upgrade -y && \
+apt-get install -y curl wget lsb-release apt-transport-https ca-certificates apache2 apache2-doc apache2-utils curl mariadb-server sendmail python3-pip git unzip emacs php8.2 php8.2-{common,curl,bcmath,intl,mbstring,xmlrpc,mcrypt,mysql,gd,xml,cli,zip} man bat exa pipx && \
 curl -sS https://getcomposer.org/installer -o composer-setup.php && \
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
 a2enmod rewrite && \
 sendmailconfig && \
-service apache2 restart
+service apache2 restart && \
+apt autoremove -y && \
+mkdir -p ~/.local/bin && \
+ln -s /usr/bin/batcat ~/.local/bin/bat
 ```
 
 ## Setup Windows Terminal
@@ -115,9 +114,17 @@ service apache2 restart
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
+    "newTabMenu": [
+      {
+        "type": "remainingProfiles"
+      }
+    ],
     "profiles": {
       "defaults": {
-        "elevate": true
+        "elevate": true,
+        "font": {
+          "face": "CaskaydiaCove Nerd Font Mono"
+        }
       },
       "list": [
         {
@@ -136,7 +143,9 @@ service apache2 restart
           "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
           "hidden": false,
           "name": "Debian",
-          "source": "Windows.Terminal.Wsl"
+          "opacity": 72,
+          "source": "Windows.Terminal.Wsl",
+          "useAcrylic": true
         },
         {
           "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
@@ -378,7 +387,8 @@ service apache2 restart
         "yellow": "#808000"
       }
     ],
-    "themes": []
+    "themes": [],
+    "useAcrylicInTabRow": true
   }
   ```
 
@@ -388,7 +398,7 @@ service apache2 restart
 
 #### Setup WSL behavior
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ emacs /etc/wsl.conf
@@ -421,7 +431,7 @@ default=root
 
 #### Setup ZSH
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ apt-get install -y zsh
@@ -434,7 +444,7 @@ $ emacs ~/.zshrc
 
 2. Write inside the file :
 
-```conf
+```bash
 source ~/antigen.zsh
 
 antigen use oh-my-zsh
@@ -444,7 +454,7 @@ antigen bundle pip
 antigen bundle github
 antigen bundle npm
 antigen bundle command-not-found
-antigen bundle common-aliases
+#antigen bundle common-aliases # Warning : enabling this line breaks NVM.
 antigen bundle compleat
 antigen bundle git-extras
 
@@ -459,85 +469,81 @@ antigen apply
 
 ---
 
-#### Setup GitHub SSH Key
-
-> https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-
-1. Type in Bash :
-
-```bash
-$ ssh-keygen -t ed25519 -C "your_email@example.com"
-$ eval $(ssh-agent -s)
-$ ssh-add ~/.ssh/id_ed25519
-$ cat ~/.ssh/id_ed25519.pub
-$ apt-get install -y keychain
-$ emacs ~/.zshrc
-```
-
-2. Then, write inside the file :
-
-```bash
-##### Start SSH agent autoload #####
-/usr/bin/keychain --nogui $HOME/.ssh/id_ed25519
-source $HOME/.keychain/$HOST-sh
-##### End SSH agent autoload #####
-```
-
-3. Finally, go to your [SSH and GPG key settings page](https://github.com/settings/keys), and add your SSH key to your account as an authentication key.
-
----
-
-#### Setup GitHub commit signing with SSH key
+#### Setup Git and GitHub
 
 > https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key#telling-git-about-your-ssh-key
 
-> https://calebhearth.com/sign-git-with-ssh
-
-> **⚠️ _<ins>SSH signature verification is available in Git 2.34 or later<ins>_ ⚠️**<br/>
-> you can run `git --version` to ensure you have the right version.
-
-1. First, generate a SSH key as seen before
-2. Then, type in Bash :
+1. Type in your terminal :
 
 ```bash
+$ apt-get install -y keychain
+$ ssh-keygen -t ed25519 -C "email@example.com"
 $ git config --global user.name "John Doe"
 $ git config --global user.email "email@example.com"
-$ git config --global commit.gpgsign true
 $ git config --global gpg.format ssh
-$ ssh-add -L
-$ git config --global user.signingkey "ssh-ed25519 <your key id>"
-$ git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
-$ touch ~/.ssh/allowed_signers
-$ echo "email@example.com ssh-ed25519 <your key id>" > ~/.ssh/allowed_signers
+$ git config --global commit.gpgsign true
+$ git config --global tag.gpgsign true
+$ cat ~/.ssh/id_ed25519.pub
+$ git config --global user.signingKey 'ssh-ed25519 AAAAC3(...)qiXsb email@example.com' # with key seen from previous command
+$ emacs ~/.config/git/allowed_signers
+```
+
+2. Then write in file :
+
+```conf
+email@example.com ssh-ed25519 AAAAC3(...)qiXsb email@example.com
+```
+
+3. Type in your terminal :
+
+```bash
 $ emacs ~/.gitconfig
 ```
 
-3. Write inside the file :
+4. Add in this file :
 
-```conf
-[gpg]
-  format = ssh
+```bash
 [gpg "ssh"]
-  allowedSignersFile = ~/.ssh/allowed_signers
-[user]
-  signingkey = ssh-ed25519 <your key id>
+        allowedSignersFile = /path/to/your_user/.ssh/allowed_signers
+[core]
+        fileMode = false
+        editor = emacs
+[pull]
+        rebase = false
+[init]
+        defaultBranch = main
 ```
 
-4. Then, go to your [SSH and GPG key settings page](https://github.com/settings/keys), and add your SSH key to your account as a signing key.
+5. Then, go to your [SSH and GPG key settings page](https://github.com/settings/keys), and add your SSH key to your account as a signing key and as an authentication key.
 
-5. Finally, on your Visual Studio Code JSON settings file, add this line:
+6. Add to your Visual Studio Code JSON settings file this line:
 
 ```json
 "git.enableCommitSigning": true
 ```
 
-<br/>
+7. Type in your terminal :
+
+```bash
+$ emacs ~/.zshrc
+```
+
+8. Finally, add in the file :
+
+```bash
+##### Start SSH agent autoload #####
+  /usr/bin/keychain --nogui $HOME/.ssh/id_ed25519
+  source $HOME/.keychain/$HOST-sh
+##### End SSH agent autoload #####
+```
+
+---
 
 ### Ease of use
 
 #### Setup bash aliases
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ emacs ~/.zshrc
@@ -549,7 +555,7 @@ $ emacs ~/.zshrc
 ##### Start Aliases setup #####
   alias ssh="ssh -A" # Enable connection transfer of authentication agent.
   alias emacs="emacs -nw" # Force emacs to open as non window mode.
-  alias cat='bat --paging=never' # Replaces /usr/bin/cat with bat.
+  alias cat='bat' # Replaces /usr/bin/cat with bat.
   alias ls='exa' # Replaces /usr/bin/ls with exa.
   alias ll='exa -la --icons' # Enable exa command with icons.
 ##### End Aliases setup #####
@@ -559,7 +565,7 @@ $ emacs ~/.zshrc
 
 #### Setup terminal colors
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ emacs ~/.zshrc
@@ -576,27 +582,28 @@ $ emacs ~/.zshrc
 
 ---
 
-#### Setup Wakatime API
+#### Setup Wakatime
 
 > https://wakatime.com/terminal#install-bash
 
-1. First, type in Bash :
+1. First, type in your terminal :
 
 ```bash
+  $ pipx install wakatime
+  $ pipx ensurepath
   $ emacs ~/.zshrc
 ```
 
-2. Write inside the file :
+2. Write inside the file before `antigen apply` :
 
 ```bash
   antigen bundle sobolevn/wakatime-zsh-plugin
 ```
 
 3. Visit https://wakatime.com/settings/account and copy your API KEY
-4. Type in Bash :
+4. Type in your terminal :
 
 ```bash
-$ pip3 install wakatime
 $ emacs ~/.wakatime.cfg
 ```
 
@@ -604,7 +611,7 @@ $ emacs ~/.wakatime.cfg
 
 ```conf
 [settings]
-api_key = $API_KEY
+api_key = YOUR_API_KEY
 ```
 
 ---
@@ -613,25 +620,20 @@ api_key = $API_KEY
 
 > https://github.com/justjanne/powerline-go
 
-1. First, type in Bash :
+1. First, type in your terminal :
 
 ```bash
+$ pipx install powerline-status
 $ emacs ~/.zshrc
 ```
 
-2. Write inside the file :
+2. Write inside the file before `antigen apply` :
 
 ```bash
 antigen bundle Lokaltog/powerline powerline/bindings/zsh
 ```
 
-3. Type in Bash :
-
-```bash
-$ pip3 install powerline-status
-```
-
-4. Visit https://github.com/microsoft/cascadia-code/releases, download `CascadiaPL.ttf` and install it on Windows
+3. Visit https://github.com/ryanoasis/nerd-fonts/releases, download `CascadiaCode.zip` and install it on Windows.
 
 ---
 
@@ -639,19 +641,14 @@ $ pip3 install powerline-status
 
 > https://github.com/dylanaraps/neofetch
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ apt-get install neofetch
-```
-
-2. Type in Bash :
-
-```bash
 $ emacs ~/.zshrc
 ```
 
-3. Write inside the file :
+2. Write inside the file :
 
 ```bash
 ##### Start Neofetch enabling #####
@@ -659,7 +656,7 @@ $ emacs ~/.zshrc
 ##### End Neofetch enabling #####
 ```
 
-4. Type in Bash :
+4. Type in your terminal :
 
 ```bash
 $ emacs ~/.config/neofetch/config
@@ -823,7 +820,7 @@ stdout="off"
 
 ## Install phpMyAdmin
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ cd /var/www/
@@ -854,41 +851,62 @@ $cfg['TempDir'] = 'tmp';
 
 5. Finally, create an Apache Virtual Host as described [here](#create-apache2-virtualhost)
 
-## Create Apache2 VirtualHost
+## Install Node Version Manager (NVM)
 
-1. Type in Bash :
+> https://github.com/nvm-sh/nvm
+
+1. Type in your terminal :
 
 ```bash
-$ emacs /etc/apache2/sites-available/sub.domain.ext.conf
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+$ emacs ~/.zshrc
 ```
 
-2. Write inside the file :
+2. Then check if, at the end of the file, you have these lines (if not, add them.):
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+## Create Apache2 VirtualHost
+
+> Here, `sub.domain.tld` is meant to be replaced with your domain name.
+
+1. Type in your terminal :
+
+```bash
+$ emacs /etc/apache2/sites-available/sub.domain.tld.conf
+```
+
+2. Write inside the file :n
 
 ```conf
 <VirtualHost *:80>
-  ServerName sub.domain.ext
-  #ServerAlias sub2.domain.ext only if necessary
-  DocumentRoot /var/www/sub.domain.ext/
+  ServerName sub.domain.tld
+  ServerAlias sub2.domain.tld # only if necessary
+  DocumentRoot /var/www/sub.domain.tld/
 
-  ErrorLog /var/log/apache2/sub.domain.ext.error.log
-  CustomLog /var/log/apache2/sub.domain.ext.access.log combined
+  ErrorLog /var/log/apache2/sub.domain.tld.error.log
+  CustomLog /var/log/apache2/sub.domain.tld.access.log combined
 </VirtualHost>
 ```
 
-3. Type in Bash :
+3. Type in your terminal :
 
 ```bash
-$ a2ensite sub.domain.ext
+$ a2ensite sub.domain.tld
 $ service apache2 restart
 ```
 
 <br/>
 
-## Create user
+## Create users
 
-### MySQL user
+### MySQL users
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ mysql -u root -p
@@ -904,9 +922,9 @@ $ mysql -u root -p
 > exit;
 ```
 
-### Unix user
+### Unix users
 
-1. Type in Bash :
+1. Type in your terminal :
 
 ```bash
 $ NEWUSER=nomprenom
@@ -917,7 +935,7 @@ $ usermod -g www-data $NEWUSER
 $ emacs /home/$NEWUSER/.bash_profile
 ```
 
-2. Write inside the file :
+1. Write inside the file :
 
 ```bash
 alias ls='ls --color=auto'
@@ -1116,7 +1134,7 @@ alias alias="printf ''"
 ##### End Alias access blocking #####
 ```
 
-3. Type in Bash :
+3. Type in your terminal :
 
 ```bash
 $ chown root:root /home/$NEWUSER/.bash_profile
@@ -1134,7 +1152,7 @@ $ ssh-keygen
     <li>Export private key to .ppk format</li>
   </ul>
 
-4. Type in Bash :
+4. Type in your terminal :
 
 ```bash
 $ cat /home/$NEWUSER/.ssh/id_rsa.pub >> /home/$NEWUSER/.ssh/authorized_keys
